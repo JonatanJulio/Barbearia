@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ todo['name'] }}</title>
+    <style>
+        .pending {color: darkblue }
+        .completed {color: green}
+        .delayed { color: red}
+    </style>
+</head>
+<body>
+    <h1>[ {{ todo['status'] }}] {{ todo['name'] }}</h1>
+
+    <form method="get">
+        <label for="name">Nome:</label>
+        </label><input type="text" id="name" name="name">
+        <br><br>
+        <label for="password">Senha:</label>
+        </label><input type="password" id="password" name="password">
+        <br><br>
+        <input type="submit" value="Enviar">
+        
+        
+    </form>
+    <hr>
+    <ul>
+        {% for task in todo ['tasks'] %}
+            {% if task['status'] != 'completed' %}
+            <li class="{{ task['status'] }}">
+                {{ task['due_date'] }} - <a href='#'>{{ task['name'] }}</a><br>
+                <small>{{ task['description'] }}</small>
+            </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+</html>
