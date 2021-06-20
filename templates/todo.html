@@ -14,16 +14,18 @@
 <body>
     <h1>[ {{ todo['status'] }}] {{ todo['name'] }}</h1>
 
-    <form method="get">
+    <form method="post">
         <label for="name">Nome:</label>
-        </label><input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" value="{{ todo['name'] }}">
         <br><br>
-        <label for="password">Senha:</label>
-        </label><input type="password" id="password" name="password">
+        <label for="password">Status:</label>
+        <select name="status">
+            <option>-- selecione uma opção --</option>
+            <option value="active" {% if todo['status'] == 'active' %}selected{% endif %}>Ativo</option>
+            <option value="inactive" {% if todo['status'] == 'inactive' %}selected{% endif %}>Inativo</option>
+        </select>
         <br><br>
         <input type="submit" value="Enviar">
-        
-        
     </form>
     <hr>
     <ul>

@@ -1,5 +1,10 @@
+from types import ClassMethodDescriptorType
 from flask import Flask, render_template, abort, request
+from repositories.todos_repository import TodosRepository
 app = Flask(__name__)
+
+from repositories.db import DB
+
 #todos
 #id: integer
 #name: string
@@ -19,7 +24,7 @@ data = [
     {
         'id': 1,
         'name': 'CASA',
-        'status': 'active',
+        'status': 'inactive',
         'tasks': [
             {
                 'id': 1,
@@ -62,36 +67,45 @@ data = [
 
     }
 ]
+#PostgreSQL
 
-@app.route('/')
+@app.route('/') # http://localhost:5000
 def index():
+    todos_repository = TodosRepository()
+    todos = todos_repository.list()
+    
+
     return render_template(
         'index.html',
         title = 'TODOs Uncisal',
-        todos = data
+        todos = todos
         
     )
-
+# GET POST http://localhost:50000/todos/1
+# GET http://localhost:50000/todos/1?nome=Tonho$idade=12
 @app.route('/todos/<int:todo_id>', methods=['GET', 'POST'])
 def todos(todo_id):
     todo = None
 
-    if request.method == 'POST':
-        name = request.form.get('name')
-        password = request.form.get('password')
-        return f"{name} {password}"
-    else:
-        #name = request.args.get('name')
-        #password = request.args.get('password')
-        #return f"{name} {password}"
-        for item in data:
+    for item in data:
             if item['id'] == todo_id:
                 todo = item
                 break
-
-        if todo is None:
+    
+    if todo is None:
             abort(404)
 
+    if request.method == 'POST':
+        #name = request.form.get('name')
+        #status = request.form.get('status')
+        todo['name'] = request.form.get('name')
+        todo['status'] = request.form.get('status')
+
+    print(todo)    
+    #else:
+        #name = request.args.get('name')
+        #password = request.args.get('password')
+        #return f"{name} {password}"
     return render_template('todo.html', todo=todo)
 
 @app.route('/sobre')

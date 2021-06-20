@@ -18,7 +18,7 @@
 
     <ul>
         {% for todo in todos %}
-            <li><a href="/todos/{{ todo['id'] }}">{{ todo['name'] }} ({{ todo['tasks']|length}})</a></li>
+            <li><a href="/todos/{{ todo.id }}">{{ todo.name }} ({{ todo.get_tasks()|length }})</a></li>
         {% endfor %}
         
     </ul>
