@@ -27,6 +27,11 @@
         <br><br>
         <input type="submit" value="Enviar">
     </form>
+
+    <form method="POST" action="/todos/{{ todo.id }}/delete">
+        <button>Remover</button>
+
+    </form>
     <hr>
     <ul>
         {% for task in todo ['tasks'] %}

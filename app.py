@@ -1,79 +1,26 @@
 from types import ClassMethodDescriptorType
-from flask import Flask, render_template, abort, request
-from repositories.todos_repository import TodosRepository
+
+from flask import Flask, abort, render_template, request, redirect, url_for
+from flask_migrate import Migrate
+
+
+from shared.models import db
+from models.todo import Todo
+from models.task import Task
+
 app = Flask(__name__)
-
-from repositories.db import DB
-
-#todos
-#id: integer
-#name: string
-#status: string
-#tasks:list<task>
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:123@localhost:5432/todolist"
+db.init_app(app)
+migrate = Migrate(app, db)
 
 
-#tasks
-#id: integer
-#todo_id: integer
-#name: string
-#description: string
-#due_date: date:
-#status: string
-
-data = [
-    {
-        'id': 1,
-        'name': 'CASA',
-        'status': 'inactive',
-        'tasks': [
-            {
-                'id': 1,
-                'name': 'Lavar Pratos',
-                'description': 'Os pratos estão todos sujos meu brother!',
-                'due_date': '12/05/2021',
-                'status': 'pending' 
-            },
-            {
-                'id': 2,
-                'name': 'Lavar Roupas',
-                'description': 'Deixe de ser nojento!',
-                'due_date': '12/05/2021',
-                'status': 'delayed' 
-            },
-            {
-                'id': 3,
-                'name': 'Lavar Roupas',
-                'description': 'Deixe de ser nojento!',
-                'due_date': '12/05/2021',
-                'status': 'completed' 
-            }
-        ]
-
-    },
-    {
-        'id': 2,
-        'name': 'Trabalho',
-        'status': 'active',
-        'tasks': [
-            {
-                'id': 3,
-                'name': 'Imprimir documentação para contratação',
-                'description': 'Falta imprimir CPF e comprovante de endereço',
-                'due_date': '23/05/2021',
-                'status': 'pending' 
-            }
-            
-        ]
-
-    }
-]
-#PostgreSQL
 
 @app.route('/') # http://localhost:5000
 def index():
-    todos_repository = TodosRepository()
-    todos = todos_repository.list()
+    todos = Todo.query.all()
     
+    
+
 
     return render_template(
         'index.html',
@@ -81,32 +28,38 @@ def index():
         todos = todos
         
     )
-# GET POST http://localhost:50000/todos/1
-# GET http://localhost:50000/todos/1?nome=Tonho$idade=12
+
 @app.route('/todos/<int:todo_id>', methods=['GET', 'POST'])
 def todos(todo_id):
-    todo = None
-
-    for item in data:
-            if item['id'] == todo_id:
-                todo = item
-                break
+    todo = Todo.query.get_or_404(todo_id)
     
-    if todo is None:
-            abort(404)
-
     if request.method == 'POST':
-        #name = request.form.get('name')
-        #status = request.form.get('status')
-        todo['name'] = request.form.get('name')
-        todo['status'] = request.form.get('status')
+        todo.name = request.form.get('name')
+        todo.status = request.form.get('status')
+        db.session.add(todo)
+        db.session.commit()
 
-    print(todo)    
-    #else:
-        #name = request.args.get('name')
-        #password = request.args.get('password')
-        #return f"{name} {password}"
     return render_template('todo.html', todo=todo)
+
+@app.route('/todos', methods=['POST'])
+def create_todo():
+    name = request.form.get('name')
+    status = request.form.get('status')
+
+    todo = Todo(name=name, status=status)
+
+    db.session.add(todo)
+    db.session.commit()
+
+    return redirect(url_for('todos',todo_id=todo.id))
+
+@app.route('/todos/<int:todo_id>/delete', methods=['POST'])
+def delete_todo(todo_id):
+    todo = Todo.query.get_or_404(todo_id)
+    db.session.delete(todo)
+    db.session.commit()
+
+    return redirect(url_for('index'))
 
 @app.route('/sobre')
 def sobre():
