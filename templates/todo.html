@@ -12,8 +12,8 @@
     </style>
 </head>
 <body>
-    <h1>[ {{ todo['status'] }}] {{ todo['name'] }}</h1>
-
+    <h1>[ {{ todo['status'] }}] {{ todo['name'] }} ({{ language }})</h1>
+    
     <form method="post">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" value="{{ todo['name'] }}">
