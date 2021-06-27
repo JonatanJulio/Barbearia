@@ -6,7 +6,7 @@ class DB:
     def connection():
         conn = psycopg2.connect(
             host="localhost",
-            database="todolist",
+            database="barbearia",
             user="postgres",
             password="123"
         )

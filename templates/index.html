@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
-    <title>TODOS</title>
+    <title>Serviços</title>
     <style>
         .completed { color: blue }
         .pending { color: yellow }
@@ -49,7 +49,7 @@
         
         <div class="row mt-5">
             <div class="col-sm-4">
-                <form method="post" action="/todos">
+                <form method="post" action="/barbes">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome:</label>
                         <input type="text" id="name" name="name" class="form-control" placeholder="Nome">
@@ -58,20 +58,20 @@
                         <label for="status" class="form-label">Status:</label>
                         <select name="status" class="form-select">
                             <option>-- selecione uma opção --</option>
-                            <option value="active">Ativo</option>
-                            <option value="inactive">Inativo</option>
+                            <option value="atendido">Atendido</option>
+                            <option value="aguardando">Aguardando</option>
                         </select>
                     </div>
                     
-                    <input type="submit" class="btn btn-primary" value="Criar novo TODO">
+                    <input type="submit" class="btn btn-primary" value="Criar novo BARBE">
                 </form>
             </div>
             <div class="col-sm-8">
-                <h4>TODOS</h4>
+                <h4>BARBES</h4>
                 <ul class="list-group">
-                    {% for todo in todos %}
+                    {% for barbe in barbes %}
                         <li class="list-group-item">
-                            <a href="/todos/{{ todo.id }}">{{ todo.name }} ({{ todo.tasks|length }})</a>
+                            <a href="/barbes/{{ barbe.id }}">{{ barbe.name }} ({{ barbe.servico|length }})</a>
                         </li>
                     {% endfor %}
                 </ul>

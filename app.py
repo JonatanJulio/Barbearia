@@ -7,12 +7,12 @@ from flask_migrate import Migrate
 
 
 from shared.models import db
-from models.todo import Todo
-from models.task import Task
+from models.barbe import Barbe
+from models.servico import Servico
 
 app = Flask(__name__)
 CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:123@localhost:5432/todolist"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:123@localhost:5432/barbearia"
 db.init_app(app)
 migrate = Migrate(app, db)
 
@@ -26,13 +26,13 @@ def index():
     if 'username' not in session:
         return redirect(url_for('login'))
     
-    todos = Todo.query.all()
+    barbes = Barbe.query.all()
     
     response = make_response(
         render_template(    
             'index.html',
-            title = 'TODOs Uncisal',
-            todos = todos
+            title = 'Barbearia',
+            barbes = barbes
         )
     )
     # response.set_cookie('language', 'pt-BR')
@@ -46,43 +46,43 @@ def set_language(language):
     
     return response
 
-@app.route('/todos/<int:todo_id>', methods=['GET', 'POST'])
-def todos(todo_id):
+@app.route('/barbes/<int:barbe_id>', methods=['GET', 'POST'])
+def barbes(barbe_id):
     language = request.cookies.get('language')
 
-    todo = Todo.query.get_or_404(todo_id)
+    barbe = Barbe.query.get_or_404(barbe_id)
     
     if request.method == 'POST':
-        todo.name = request.form.get('name')
-        todo.status = request.form.get('status')
-        db.session.add(todo)
+        barbe.name = request.form.get('name')
+        barbe.status = request.form.get('status')
+        db.session.add(barbe)
         db.session.commit()
 
-    return render_template('todo.html', todo=todo, language=language)
+    return render_template('barbe.html', barbe=barbe, language=language)
 
-@app.route('/todos', methods=['POST'])
-def create_todo():
+@app.route('/barbes', methods=['POST'])
+def create_barbe():
     name = request.form.get('name')
     status = request.form.get('status')
 
-    todo = Todo(name=name, status=status)
+    barbe = Barbe(name=name, status=status)
 
-    db.session.add(todo)
+    db.session.add(barbe)
     db.session.commit()
 
-    return redirect(url_for('todos',todo_id=todo.id))
+    return redirect(url_for('barbes',barbe_id=barbe.id))
 
-@app.route('/todos/<int:todo_id>/delete', methods=['POST'])
-def delete_todo(todo_id):
-    todo = Todo.query.get_or_404(todo_id)
-    db.session.delete(todo)
+@app.route('/barbes/<int:barbe_id>/delete', methods=['POST'])
+def delete_barbe(barbe_id):
+    barbe = Barbe.query.get_or_404(barbe_id)
+    db.session.delete(barbe)
     db.session.commit()
 
     return redirect(url_for('index'))
 
 @app.route('/sobre')
 def sobre():
-    return'Sistemas de TODO!'
+    return'Sistema de Barbearia!'
 
 #http://localhost:5000/contato/julio
 @app.route('/contato/<nome>')
@@ -112,22 +112,22 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route('/api/todos')
-def api_todos():
-    todos = Todo.query.all()
+@app.route('/api/barbes')
+def api_barbes():
+    barbes = Barbe.query.all()
 
-    todo_list = []
-    for todo in todos:
-        todo_list.append(
+    barbe_list = []
+    for barbe in barbes:
+        barbe_list.append(
             {
-                "id": todo.id,
-                "name": todo.name,
-                "status": todo.status
+                "id": barbe.id,
+                "name": barbe.name,
+                "status": barbe.status
 
             }
         )
 
-    return jsonify(todo_list)
+    return jsonify(barbe_list)
 
-    # return [{"id": todo['id'], "name": todo["name"]} for todo in todos] 
+     
     

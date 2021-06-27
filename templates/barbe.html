@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ todo['name'] }}</title>
+    <title>{{ barbe['name'] }}</title>
     <style>
         .pending {color: darkblue }
         .completed {color: green}
@@ -12,33 +12,33 @@
     </style>
 </head>
 <body>
-    <h1>[ {{ todo['status'] }}] {{ todo['name'] }} ({{ language }})</h1>
+    <h1>[ {{ barbe['status'] }}] {{ barbe['name'] }} ({{ language }})</h1>
     
     <form method="post">
         <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" value="{{ todo['name'] }}">
+        <input type="text" id="name" name="name" value="{{ barbe['name'] }}">
         <br><br>
         <label for="password">Status:</label>
         <select name="status">
             <option>-- selecione uma opção --</option>
-            <option value="active" {% if todo['status'] == 'active' %}selected{% endif %}>Ativo</option>
-            <option value="inactive" {% if todo['status'] == 'inactive' %}selected{% endif %}>Inativo</option>
+            <option value="atendido" {% if barbe['status'] == 'atendido' %}selected{% endif %}>Atendido</option>
+            <option value="aguardando" {% if barbe['status'] == 'aguardando' %}selected{% endif %}>Aguardando</option>
         </select>
         <br><br>
         <input type="submit" value="Enviar">
     </form>
 
-    <form method="POST" action="/todos/{{ todo.id }}/delete">
+    <form method="POST" action="/barbes/{{ barbe.id }}/delete">
         <button>Remover</button>
 
     </form>
     <hr>
     <ul>
-        {% for task in todo ['tasks'] %}
-            {% if task['status'] != 'completed' %}
-            <li class="{{ task['status'] }}">
-                {{ task['due_date'] }} - <a href='#'>{{ task['name'] }}</a><br>
-                <small>{{ task['description'] }}</small>
+        {% for servico in barbe ['servicos'] %}
+            {% if servico['status'] != 'completed' %}
+            <li class="{{ servico['status'] }}">
+                {{ servico['due_date'] }} - <a href='#'>{{ servico['name'] }}</a><br>
+                <small>{{ servico['description'] }}</small>
             </li>
             {% endif %}
         {% endfor %}
