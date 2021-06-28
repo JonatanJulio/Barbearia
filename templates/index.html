@@ -63,15 +63,15 @@
                         </select>
                     </div>
                     
-                    <input type="submit" class="btn btn-primary" value="Criar novo BARBE">
+                    <input type="submit" class="btn btn-primary" value="Criar novo BARBER">
                 </form>
             </div>
             <div class="col-sm-8">
-                <h4>BARBES</h4>
+                <h4>BARBERs</h4>
                 <ul class="list-group">
                     {% for barbe in barbes %}
                         <li class="list-group-item">
-                            <a href="/barbes/{{ barbe.id }}">{{ barbe.name }} ({{ barbe.servico|length }})</a>
+                            <a href="/barbes/{{ barbe.id }}">{{ barbe.name }} ({{ barbe.servicos|length }})</a>
                         </li>
                     {% endfor %}
                 </ul>
