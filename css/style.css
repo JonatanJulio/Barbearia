@@ -73,4 +73,14 @@ img{
     margin-bottom: 5px;
 
 }
+.pe{
+    color: white;
+    font-size: 25px;
+    font-weight: 300;
+    margin-top: 5px;
+    margin-bottom: 1px;
+}
 
+.val{
+    color: rgb(0, 255, 0);
+}
