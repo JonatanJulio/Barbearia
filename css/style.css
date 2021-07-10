@@ -1,0 +1,76 @@
+
+body{
+    padding: 0px;
+    margin: 0px;
+    background-color: rgb(152, 160, 157);
+}
+
+h1{
+    /* display: flex; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-bottom: 0.5px;
+    text-align: center;
+}
+
+.opcoes{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    color: white;
+    margin-top: 0px;
+    margin-left: 5px;
+    margin-bottom:0px;
+}
+
+h2{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 35px;
+    color: white;
+    margin-top: 0px;
+    margin-left: 5px;
+    margin-bottom: 0px;
+
+}
+
+footer{
+    border: 1px solid white;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: black;
+    text-align: center;
+}
+
+.agendamento{
+    font-size: 25px;
+    font-weight: 300;
+    margin-top: 5px;
+    margin-bottom: 1px;
+}
+
+.valor{
+    font-size: 40px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+img{
+    display: flex;
+    padding: 0%;
+    margin-left: 10rem;
+    margin-right: 20rem;
+    width: 70%;
+    height: 70%;
+  
+}
+
+.whatsapp{
+    display:flex;
+    width: 40px;
+    height: 40px;
+    margin-left:22px;
+    margin-top:0px;
+    margin-bottom: 5px;
+
+}
+
