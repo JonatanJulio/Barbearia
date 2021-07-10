@@ -1,0 +1,21 @@
+body{
+    background-image: url(/img/fundo-MenuPrincipal.jpg); 
+   /*  width:50px;   
+    height: 70%;
+    margin: 0px;
+    padding: 0px;  */
+
+
+.h1{
+    font-size: 10px;
+}
+
+ul li a{
+    
+    display:inline;
+    font-size: 45px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-decoration: none;
+    color: rgb(201, 209, 216);
+}
+

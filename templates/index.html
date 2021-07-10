@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
     <title>Serviços</title>
     <style>
-        .completed { color: blue }
+        /* .completed { color: blue }
         .pending { color: yellow }
         .delayed { color: red }
 
@@ -18,8 +18,9 @@
             background-color: rgba(35, 82, 255, 0.5);
             border: 1px solid blue;
             border-radius: 5px;
-        }
+        } */
     </style>
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
     <div class="container">
@@ -63,7 +64,12 @@
                         </select>
                     </div>
                     
-                    <input type="submit" class="btn btn-primary" value="Criar novo BARBER">
+                    <!-- <input type="submit" class="btn btn-primary" value=""> -->
+                    <button class="btn btn-primary"><a class="list" href="/templates/barbe.html">Criar novo BARBER</a></button>
+                    <button class="btn btn-primary"><a class="list" href="/templates/barbelist.html">Serviços</a></button>
+                    
+                    
+
                 </form>
             </div>
             <div class="col-sm-8">
