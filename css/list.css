@@ -1,21 +1,27 @@
 body{
-    background-image: url(/img/fundo-MenuPrincipal.jpg); 
-   /*  width:50px;   
-    height: 70%;
+     background-image: url(/img/Fundo1.png); 
+    width:50%;   
+    height: 20%;
     margin: 0px;
-    padding: 0px;  */
-
+    padding: 0px; 
+}
 
 .h1{
-    font-size: 10px;
-}
+    font-size: 5rem;
+    text-align: center;
+    color: rgb(27, 27, 26);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+} 
 
-ul li a{
-    
+.links a{
     display:inline;
+    text-align: center;
     font-size: 45px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, 'Times New Roman', Times, serif;
     text-decoration: none;
-    color: rgb(201, 209, 216);
+    color: rgb(27, 27, 26);
 }
 
+.voltar-list{
+    color: rgb(211, 154, 33);
+}
