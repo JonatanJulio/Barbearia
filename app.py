@@ -80,9 +80,29 @@ def delete_barbe(barbe_id):
 
     return redirect(url_for('index'))
 
+@app.route('/valor_barba')
+def valor_barba():
+    return render_template('valor_barba.html')
+
 @app.route('/sobre')
 def sobre():
-    return'Sistema de Barbearia!'
+    return render_template('barbelist.html')
+
+@app.route('/corte_barba')
+def corte_barba():
+    return render_template('corte_barba.html')
+
+@app.route('/valor_corte')
+def valor_corte():
+    return render_template('valor_corte.html')
+
+@app.route('/meia_barba')
+def meia_barba():
+    return render_template('meia_barba.html')
+
+@app.route('/infantil')
+def infantil():
+    return render_template('infantil.html')
 
 #http://localhost:5000/contato/julio
 @app.route('/contato/<nome>')

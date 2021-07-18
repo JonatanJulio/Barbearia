@@ -5,30 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valor do Barba</title>
-
-    <link rel="stylesheet" href="\Users\Julio\Workspace\Uncisal\barbearia\css\style.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    
 
 </head>
 <body>
     <h1>Valor da Barba</h1>
 
-    <a class="voltar-list" href="/templates/barbelist.html">Voltar</a>
+    <a class="voltar-list" href="/sobre">Voltar</a>
     
     <footer>
         <p class="agendamento">Faça seu Agendamento</p>
         <p class="valor">R$ 20,00 </p>
 
         <span>
-            <img class="whatsapp" src="\Users\Julio\Workspace\Uncisal\barbearia\img\whatsapp.png" alt="whatsapp"/>
+            <img class="whatsapp" src="../static/img/whatsapp.png">
+            
         </span>
     </footer>
     
     <h2>Opções de Barba:</h2>
     <div>
-        <img src="\Users\Julio\Workspace\Uncisal\barbearia\img\barba.jpg" alt="opcoes_corte">
+        <img src="../static/img/barba.jpg">
+        
     </div>
     <p>
-        <a href="\Users\Julio\Workspace\Uncisal\barbearia\templates\barbelist.html" class="pe">Voltar para a lista de serviços</a>
+        <a href="/sobre" class="pe">Voltar para a lista de serviços</a>
     </p>
     
 </body>

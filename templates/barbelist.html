@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbearia</title>
-
-    <link rel="stylesheet" href="/css/list.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/list.css') }}">
+    
 
     
 </head>
@@ -15,13 +15,15 @@
     <h1 class="h1">Barbearia</h1>
 
     <ul class="links">
-        <li><a href="/templates/box_valores/valor_corte.html">Corte</a> </li>
-        <li><a href="/templates/box_valores/valor_barba.html">Barba</a></li>
-        <li><a href="/templates/box_valores/meia_barba.html">Meia Barba</a></li>
-        <li> <a href="/templates/box_valores/corte_barba.html">Corte e barba</a></li>
-        <li><a href="/templates/box_valores/infantil.html">Infantil</a></li>
+        <li><a href=/valor_corte>Corte</a></li>
+        <li><a href=/valor_barba>Barba</a></li>
+        <li><a href=/meia_barba>Meia Barba</a></li>
+        <li> <a href=/corte_barba>Corte e Barba</a></li>
+        <li><a href=/infantil>Infantil</a></li>
             
     </ul>
+    
+    <a class="a" href="/">Voltar para pagina principal</a>
     
     
 </body>
