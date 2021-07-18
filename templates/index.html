@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
-    <title>Serviços</title>
+
+    <title>TODOs</title>
     <style>
-        /* .completed { color: blue }
+        .completed { color: blue }
         .pending { color: yellow }
         .delayed { color: red }
 
@@ -18,8 +19,79 @@
             background-color: rgba(35, 82, 255, 0.5);
             border: 1px solid blue;
             border-radius: 5px;
-        } */
+        }
     </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand">{{ title }}</a>
+
+                <div class="nav-item">
+                    <a href="/set_language/pt_BR" class="nav-link">Português</a>
+                </div>
+
+                <div class="nav-item">
+                    <a href="/set_language/en_US" class="nav-link">Inglês</a>
+                </div>
+
+                {% if 'username' in session %}
+                    <header>Logado como {{ session['username'] }}</header>
+                    <a href="/logout" class="btn btn-success">Sair</a>
+                {% endif %}
+
+
+            </div>
+        </div>
+
+        {% for category, message in get_flashed_messages(with_categories=true) %}
+            <span class="{{ category }}">{{ message }}</span>
+        {% endfor %}
+
+        <div class="row mt-5">
+            <div class="col-sm-4">
+                <form method="post" action="/todos">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome:</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Nome">
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status:</label>
+                        <select name="status" class="form-select">
+                            <option>-- Selecione uma opção --</option>
+                            <option value="active">Ativo</option>
+                            <option value="inactive">Inativo</option>
+                        </select>
+                    </div>
+
+                    <input type="submit" class="btn btn-primary" value="Criar novo TODO">
+                </form>
+            </div>
+            <div class="col-sm-8">
+                <h4>TODOs</h4>
+                <ul class="list-group">
+                    {% for todo in todos %}
+                        <li class="list-group-item">
+                            <a href="/barbes/{{ todo.id }}">{{ barbe.name }} ({{ todo.tasks|length }})</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+    <title>Serviços</title>
+    
     <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
@@ -64,9 +136,8 @@
                         </select>
                     </div>
                     
-                    <!-- <input type="submit" class="btn btn-primary" value=""> -->
-                    <button class="btn btn-primary"><a class="list" href="/templates/barbe.html">Criar novo BARBER</a></button>
-                    <button class="btn btn-primary"><a class="list" href="/templates/barbelist.html">Serviços</a></button>
+                    <input type="submit" class="btn btn-primary" value="Criar novo BARBER"/>
+                    
                     
                     
 
@@ -77,7 +148,7 @@
                 <ul class="list-group">
                     {% for barbe in barbes %}
                         <li class="list-group-item">
-                            <a href="/barbes/{{ barbe.id }}">{{ barbe.name }} ({{ barbe.servicos|length }})</a>
+                            <a href="/barbes/{{ barbe.id }}">{{ barbe.name }} ({{ barbe.servico|length }})</a>
                         </li>
                     {% endfor %}
                 </ul>

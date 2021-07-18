@@ -6,7 +6,6 @@ body{
 }
 
 h1{
-    /* display: flex; */
     font-family: Georgia, 'Times New Roman', Times, serif;
     margin-top: 1rem;
     margin-left: 1rem;
@@ -46,6 +45,15 @@ footer{
     font-weight: 300;
     margin-top: 5px;
     margin-bottom: 1px;
+}
+
+.voltar-list{
+    color: rgb(233, 240, 236);
+    text-decoration: none;
+    font-size: 30px;
+    margin-top: 0px;
+    margin-right: 50px;
+    text-align: right;
 }
 
 .valor{
